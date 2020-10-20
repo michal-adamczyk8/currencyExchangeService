@@ -24,6 +24,10 @@ public class RestTemplateApiClient {
         this.restTemplate = restTemplate;
     }
 
+    /**
+     * Method resposible for getting current exchange rate between USD and PLN from NBP public api.
+     * @return
+     */
     public ResponseEntity<ExchangeRatesSeries> getCurrentExchangeRate() {
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));

@@ -16,11 +16,20 @@ public class ExchangeRequest {
     private String exchangeTo;
     private String exchangeFrom;
 
+    /**
+     * Method responsible for converting request to domain object
+     * @return
+     * @throws UnknownCurrencyProvidedException
+     */
     Exchange toExchange() throws UnknownCurrencyProvidedException {
         validateRequest();
         return Exchange.builder().amount(new BigDecimal(amount)).exchangeTo(exchangeTo).exchangeFrom(exchangeFrom).build();
     }
 
+    /**
+     * Method responsible for validating currencies provided in request. If not defined in CurrencyEnum custom exception is thrown
+     * @throws UnknownCurrencyProvidedException
+     */
     private void validateRequest() throws UnknownCurrencyProvidedException {
         if (Objects.isNull(CurrencyEnum.getCurrencyEnumFromValue(exchangeFrom)) || Objects.isNull(CurrencyEnum.getCurrencyEnumFromValue(exchangeTo))) {
             throw new UnknownCurrencyProvidedException();

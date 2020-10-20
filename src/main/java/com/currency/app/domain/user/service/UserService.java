@@ -21,6 +21,12 @@ public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
     private final PeselValidation peselValidation;
 
+    /**
+     * Method responsible for checking if there is already another user in the database with the same PESEL
+     * @param pesel
+     * @return
+     * @throws UsernameNotFoundException
+     */
     @Override
     public UserDetails loadUserByUsername(String pesel) throws UsernameNotFoundException {
         User user = userRepository.findByPesel(pesel);
@@ -31,7 +37,27 @@ public class UserService implements UserDetailsService {
     }
 
 
+    /**
+     * Method responsible for saving user to database if it passes validation
+     * @param user
+     * @return
+     * @throws UserAlreadyExistsException
+     * @throws UserUnder18YearsOldException
+     * @throws InvalidPeselException
+     */
     public User registerNewUser(User user) throws UserAlreadyExistsException, UserUnder18YearsOldException, InvalidPeselException {
+        validatePesel(user);
+        return userRepository.save(user);
+    }
+
+    /**
+     * Method resposible for validating pesel of the user
+     * @param user
+     * @throws InvalidPeselException
+     * @throws UserAlreadyExistsException
+     * @throws UserUnder18YearsOldException
+     */
+    private void validatePesel(User user) throws InvalidPeselException, UserAlreadyExistsException, UserUnder18YearsOldException {
         String pesel = user.getPesel();
         if (!peselValidation.isPeselLengthCorrect(pesel) || !peselValidation.isChecksumValid(pesel) ) {
             throw new InvalidPeselException();
@@ -42,6 +68,5 @@ public class UserService implements UserDetailsService {
         if (!peselValidation.isUserOver18YearsOld(pesel)) {
             throw new UserUnder18YearsOldException();
         }
-        return userRepository.save(user);
     }
 }

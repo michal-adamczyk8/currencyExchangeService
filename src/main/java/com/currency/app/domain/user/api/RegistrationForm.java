@@ -17,6 +17,11 @@ public class RegistrationForm {
     private String accountBalance;
     private String currency;
 
+    /**
+     * Method responsible for converting registration form that comes as a request to domain user object
+     * @param passwordEncoder
+     * @return
+     */
     public User toUser(PasswordEncoder passwordEncoder) {
         Account account = new Account(new BigDecimal(accountBalance), CurrencyEnum.getCurrencyEnumFromValue(currency));
         User user = new User(firstName, lastName, passwordEncoder.encode(password), pesel, account);

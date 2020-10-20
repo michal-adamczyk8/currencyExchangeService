@@ -19,10 +19,10 @@ public class PlnToUsdExchangeService implements ExchangeService {
     public BigDecimal exchange(String from, String to, BigDecimal amount) {
         Rate rate = apiClient.getCurrentExchangeRate().getBody().getRates().stream().findFirst().orElse(null);
         if (getExchangeCurrencyFrom().toString().equals(from) && getExchangeCurrencyTo().toString().equals(to)) {
-            return buy(amount, Double.valueOf(rate.getAsk()));
+            return buyUSD(amount, Double.valueOf(rate.getAsk()));
         }
         if (getExchangeCurrencyTo().toString().equals(from) && getExchangeCurrencyFrom().toString().equals(to)) {
-            return sell(amount, Double.valueOf(rate.getAsk()));
+            return sellPLN(amount, Double.valueOf(rate.getAsk()));
         }
         return null;
     }
@@ -37,11 +37,23 @@ public class PlnToUsdExchangeService implements ExchangeService {
         return CurrencyEnum.USD;
     }
 
-    public BigDecimal buy(BigDecimal amount, Double rate) {
+    /**
+     * Method responsible for exchanging amount from PLN to USD
+     * @param amount
+     * @param rate
+     * @return
+     */
+    public BigDecimal buyUSD(BigDecimal amount, Double rate) {
         return amount.divide(new BigDecimal(rate), RoundingMode.HALF_UP);
     }
 
-    public BigDecimal sell(BigDecimal amount, Double rate) {
+    /**
+     * Method responsible for exchanging amount from USD to PLN
+     * @param amount
+     * @param rate
+     * @return
+     */
+    public BigDecimal sellPLN(BigDecimal amount, Double rate) {
         return amount.multiply(new BigDecimal(rate)).setScale(2, RoundingMode.HALF_UP);
     }
 

@@ -26,6 +26,11 @@ public class AccountService {
         return getAccountProjection(account);
     }
 
+    /**
+     * Method responsible for creating response projection based on account object retrieved from database.
+     * @param account
+     * @return
+     */
     private AccountProjection getAccountProjection(Account account) {
         BigDecimal accountBalance = account.getBalance();
         CurrencyEnum accountCurrency = account.getCurrency();
