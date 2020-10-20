@@ -1,4 +1,4 @@
-package com.currency.app.api.register;
+package com.currency.app.domain.user.api;
 
 import com.currency.app.domain.account.model.Account;
 import com.currency.app.domain.user.model.CurrencyEnum;

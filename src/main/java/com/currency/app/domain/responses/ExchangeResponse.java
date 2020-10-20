@@ -1,4 +1,4 @@
-package com.currency.app.api.responses;
+package com.currency.app.domain.responses;
 
 import lombok.Builder;
 import lombok.Getter;

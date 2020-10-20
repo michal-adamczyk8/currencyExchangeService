@@ -1,6 +1,6 @@
-package com.currency.app.api.exchange;
+package com.currency.app.domain.exchange.api;
 
-import com.currency.app.api.responses.ExchangeResponse;
+import com.currency.app.domain.responses.ExchangeResponse;
 import com.currency.app.domain.exchange.model.Exchange;
 import com.currency.app.domain.exchange.service.ExchangeService;
 import org.springframework.http.HttpStatus;

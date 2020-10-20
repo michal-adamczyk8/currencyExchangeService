@@ -1,6 +1,6 @@
-package com.currency.app.api.account;
+package com.currency.app.domain.account.api;
 
-import com.currency.app.api.responses.Response;
+import com.currency.app.domain.responses.Response;
 import com.currency.app.domain.account.model.AccountProjection;
 import com.currency.app.domain.account.service.AccountService;
 import org.springframework.http.HttpStatus;

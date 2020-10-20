@@ -33,14 +33,14 @@ public class UserService implements UserDetailsService {
 
     public User registerNewUser(User user) throws UserAlreadyExistsException, UserUnder18YearsOldException, InvalidPeselException {
         String pesel = user.getPesel();
+        if (!peselValidation.isPeselLengthCorrect(pesel) || !peselValidation.isChecksumValid(pesel) ) {
+            throw new InvalidPeselException();
+        }
         if (userRepository.existsByPesel(pesel)) {
             throw new UserAlreadyExistsException();
         }
         if (!peselValidation.isUserOver18YearsOld(pesel)) {
             throw new UserUnder18YearsOldException();
-        }
-        if (!peselValidation.isChecksumValid(pesel)) {
-            throw new InvalidPeselException();
         }
         return userRepository.save(user);
     }

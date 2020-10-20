@@ -1,6 +1,6 @@
-package com.currency.app.api.register;
+package com.currency.app.domain.user.api;
 
-import com.currency.app.api.responses.RegisterUserResponse;
+import com.currency.app.domain.responses.RegisterUserResponse;
 import com.currency.app.domain.user.model.User;
 import com.currency.app.domain.user.service.UserService;
 import com.currency.app.domain.user.service.exception.InvalidPeselException;

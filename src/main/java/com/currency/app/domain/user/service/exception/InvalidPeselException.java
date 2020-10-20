@@ -1,6 +1,6 @@
 package com.currency.app.domain.user.service.exception;
 
-public class InvalidPeselException extends Throwable {
+public class InvalidPeselException extends Exception {
     public static final String INVALID_PESEL_MESSAGE = "Given pesel is invalid!";
 
     public InvalidPeselException() {

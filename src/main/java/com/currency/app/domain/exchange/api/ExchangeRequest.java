@@ -1,4 +1,4 @@
-package com.currency.app.api.exchange;
+package com.currency.app.domain.exchange.api;
 
 import com.currency.app.domain.exchange.model.Exchange;
 import com.currency.app.domain.user.model.CurrencyEnum;

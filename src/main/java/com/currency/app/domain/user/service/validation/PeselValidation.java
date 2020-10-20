@@ -5,12 +5,16 @@ import org.springframework.stereotype.Service;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.Objects;
 
 @Service
 public class PeselValidation {
 
     private static final DecimalFormat numFormat = new DecimalFormat("00");
 
+    public boolean isPeselLengthCorrect(String pesel) {
+        return Objects.nonNull(pesel) && pesel.length() == 11;
+    }
     public boolean isChecksumValid(String pesel) {
         int[] weights = {1, 3, 7, 9, 1, 3, 7, 9, 1, 3};
         int sum = 0;
