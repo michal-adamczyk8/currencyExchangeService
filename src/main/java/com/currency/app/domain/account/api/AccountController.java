@@ -22,7 +22,7 @@ public class AccountController {
         this.accountService = accountService;
     }
 
-    @GetMapping
+    @GetMapping(path = "details")
     public ResponseEntity<Response> getAccountDetails(@RequestParam("pesel") String pesel) {
         AccountProjection account = accountService.getAccountProjectionByPesel(pesel);
         if (Objects.isNull(account)) {

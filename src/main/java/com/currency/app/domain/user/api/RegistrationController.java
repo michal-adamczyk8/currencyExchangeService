@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(path = "/user/registration")
+@RequestMapping(path = "/user")
 public class RegistrationController {
 
     private UserService userService;
@@ -26,7 +26,7 @@ public class RegistrationController {
         this.passwordEncoder = passwordEncoder;
     }
 
-    @PostMapping
+    @PostMapping(path = "/registration")
     public ResponseEntity<RegisterUserResponse> processRegistration(@RequestBody RegistrationForm form)
             throws UserUnder18YearsOldException, UserAlreadyExistsException, InvalidPeselException {
         User newUser = form.toUser(passwordEncoder);

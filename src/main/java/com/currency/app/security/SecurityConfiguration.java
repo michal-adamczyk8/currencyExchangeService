@@ -30,7 +30,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
     private static final String[] PERMIT_ALL_URLS = {
-            apiPrefix +  "/user/registration"
+            apiPrefix +  "/user/registration/**"
     };
 
     @Override
@@ -41,7 +41,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-            .antMatchers(apiPrefix + "/account", apiPrefix + "/exchange")
+            .antMatchers(apiPrefix + "/account/**", apiPrefix + "/exchange/**")
             .access("hasRole('ROLE_USER')")
             .antMatchers(PERMIT_ALL_URLS)//"/api/v1/h2-console/**")
             .permitAll();

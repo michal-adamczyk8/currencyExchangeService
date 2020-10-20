@@ -23,7 +23,7 @@ public class ExchangeController {
         this.exchangeService = exchangeService;
     }
 
-    @GetMapping
+    @GetMapping(path = "/single")
     public ResponseEntity exchange(@RequestBody ExchangeRequest request) throws UnknownCurrencyProvidedException {
         Exchange exchange = request.toExchange();
         BigDecimal result = exchangeService.exchange(exchange.getExchangeFrom(), exchange.getExchangeTo(), exchange.getAmount());
